@@ -1,8 +1,6 @@
-import React from "react";
+import useSWR from "swr";
 
-type Props = {};
-
-const MessageList = (props: Props) => {
+const MessageList = () => {
 	return (
 		<div>
 			<p>Message</p>
