@@ -1,6 +1,12 @@
 "use client";
 
+import { Message } from "@/typings";
 import { FormEvent, useState } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+type Data = {
+	message: Message;
+};
 
 const ChatInput = () => {
 	const [input, setInput] = useState("");
@@ -11,6 +17,31 @@ const ChatInput = () => {
 
 		const messageToSend = input;
 		setInput("");
+
+		const id = uuidv4();
+		const message: Message = {
+			id,
+			message: messageToSend,
+			username: "Prathamesh Chavan",
+			profilePic:
+				"https://media.licdn.com/dms/image/C5603AQEiRFiBvvQX_Q/profile-displayphoto-shrink_800_800/0/1648882577220?e=1696464000&v=beta&t=hU0ouQQicyNRHfQpLvhh3ZrC7Ndw4e2Geqwou9GFohI",
+			email: "prathamesh.chavan216@gmail.com",
+		};
+
+		const uploadMessageToUpstash = async () => {
+			const res = await fetch("/api/sendMessage", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ message }),
+			});
+
+			const data: Data = await res.json();
+			console.log("MESSAGE ADDED >>>", data);
+		};
+
+		uploadMessageToUpstash();
 	};
 
 	return (
