@@ -26,6 +26,7 @@ const ChatInput = () => {
 			id,
 			message: messageToSend,
 			username: "Prathamesh Chavan",
+			created_at: Date.now(),
 			profilePic:
 				"https://media.licdn.com/dms/image/C5603AQEiRFiBvvQX_Q/profile-displayphoto-shrink_800_800/0/1648882577220?e=1696464000&v=beta&t=hU0ouQQicyNRHfQpLvhh3ZrC7Ndw4e2Geqwou9GFohI",
 			email: "prathamesh.chavan216@gmail.com",
@@ -53,7 +54,7 @@ const ChatInput = () => {
 	return (
 		<form
 			onSubmit={addMessage}
-			className="fixed bottom-0 z-50 w-full flex px-10 py-5 space-x-2 border-t border-gray-100"
+			className="fixed bottom-0 z-50 w-full flex px-10 py-5 space-x-2 border-t bg-white border-gray-100"
 		>
 			<input
 				className="flex-1 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-none px-5 py-3 disabled:opacity-50 disabled:cursor-not-allowed"

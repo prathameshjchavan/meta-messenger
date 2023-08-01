@@ -1,22 +1,21 @@
 "use client";
 
-import { Message } from "@/typings";
+import { Message as MessageType } from "@/typings";
 import fetcher from "@/utils/fetchMessages";
 import useSWR from "swr";
+import Message from "./Message";
 
 const MessageList = () => {
 	const {
 		data: messages,
 		error,
 		mutate,
-	} = useSWR<Message[]>("/api/getMessages", fetcher);
+	} = useSWR<MessageType[]>("/api/getMessages", fetcher);
 
 	return (
-		<div>
+		<div className="space-y-5 px-5 pt-8 pb-32 max-w-2xl xl:max-w-4xl mx-auto">
 			{messages?.map((message) => (
-				<div key={message.id}>
-					<p>{message.message}</p>
-				</div>
+				<Message key={message.id} message={message} />
 			))}
 		</div>
 	);
