@@ -6,7 +6,7 @@ const SignInPage = async () => {
 	const providers = await getProviders();
 
 	return (
-		<div>
+		<div className="grid justify-center">
 			<div>
 				<Image
 					src="https://links.papareact.com/161"

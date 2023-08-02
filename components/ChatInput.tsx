@@ -5,12 +5,17 @@ import { FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import useSWR from "swr";
 import fetcher from "@/utils/fetchMessages";
+import { getServerSession } from "next-auth/next";
 
 type Data = {
 	message: Message;
 };
 
-const ChatInput = () => {
+type Props = {
+	session: Awaited<ReturnType<typeof getServerSession>>;
+};
+
+const ChatInput = ({ session }: Props) => {
 	const [input, setInput] = useState("");
 	const { data: messages, error, mutate } = useSWR("/api/getMessages", fetcher);
 
@@ -62,6 +67,7 @@ const ChatInput = () => {
 				value={input}
 				onChange={(e) => setInput(e.target.value)}
 				type="text"
+				disabled={!session}
 				required
 			/>
 			<button
