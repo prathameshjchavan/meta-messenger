@@ -1,9 +1,10 @@
 import Image from "next/image";
-import Link from "next/link";
 import LogoutButton from "./LogoutButton";
+import Link from "next/link";
+import { getServerSession } from "next-auth";
 
-const Header = () => {
-	const session = true;
+const Header = async () => {
+	const session = await getServerSession();
 
 	if (session)
 		return (
